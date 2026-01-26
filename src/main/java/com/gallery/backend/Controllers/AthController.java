@@ -33,8 +33,8 @@ public class AthController {
         // Tao response cookie
         ResponseCookie cookie = ResponseCookie.from("access_cookie", token)
                 .httpOnly(true)
-                .secure(false)
-                .sameSite("Lax")
+                .secure(true)
+                .sameSite("None")
                 .path("/")
                 .maxAge(Duration.ofMinutes(60))
                 .build();
