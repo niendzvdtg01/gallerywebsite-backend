@@ -6,7 +6,7 @@ spring:
     banner-mode: off
 
   datasource:
-    url: ${DATABASE_URL}
+    url: ${JDBC_DATABASE_URL:${DATABASE_URL}}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
