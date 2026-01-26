@@ -19,7 +19,7 @@ public interface FavouriteResponsitory extends JpaRepository<Favourite, Long> {
             FROM Favourite f
             LEFT JOIN Photos p
                 ON f.photo_id = p.photo_id
-            LEFT JOIN  UnsplashPhto u
+            LEFT JOIN  unsplash_phto u
                 ON f.unsplash_id = u.unsplash_id
             WHERE f.user_id = :userId
             """, nativeQuery = true)
