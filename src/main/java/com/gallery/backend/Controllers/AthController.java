@@ -34,7 +34,7 @@ public class AthController {
         ResponseCookie cookie = ResponseCookie.from("access_cookie", token)
                 .httpOnly(true)
                 .secure(true)
-                .sameSite("None").domain("https://gallerywebsite-backend-production.up.railway.app")
+                .sameSite("None").domain("gallerywebsite-backend-production.up.railway.app")
                 .path("/")
                 .maxAge(Duration.ofMinutes(60))
                 .build();
