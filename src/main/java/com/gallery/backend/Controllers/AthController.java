@@ -13,6 +13,9 @@ import com.gallery.backend.entity.Users;
 import com.gallery.backend.security.JwtsUtil;
 import com.gallery.backend.services.AuthService;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,5 +44,15 @@ public class AthController {
                 .build();
 
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).body("Login succesfully!");
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletResponse response) {
+        Cookie cookie = new Cookie("access_cookie", null);
+        cookie.setPath("/");
+        cookie.setDomain("localhost");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        return ResponseEntity.ok().build();
     }
 }

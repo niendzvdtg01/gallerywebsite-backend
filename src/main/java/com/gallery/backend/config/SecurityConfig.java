@@ -14,6 +14,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.gallery.backend.security.AuthFilter;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
@@ -35,6 +37,19 @@ public class SecurityConfig {
                                 .formLogin(form -> form.disable())
                                 .httpBasic(basic -> basic.disable())
                                 .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
+                                .logout(logout -> logout
+                                                .logoutUrl("/logout")
+                                                .logoutSuccessHandler((request, response, authentication) -> {
+
+                                                        Cookie cookie = new Cookie("access_cookie", null);
+                                                        cookie.setHttpOnly(true);
+                                                        cookie.setSecure(false); //
+                                                        cookie.setPath("/");
+                                                        cookie.setMaxAge(0); //
+
+                                                        response.addCookie(cookie);
+                                                        response.setStatus(HttpServletResponse.SC_OK);
+                                                }))
                                 // Thay vì http.cors(), dùng cách đọc CorsConfig tự động
                                 .cors(cors -> cors.configurationSource(corsConfigurationSource()));
 
