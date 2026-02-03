@@ -50,7 +50,7 @@ public class AthController {
     public ResponseEntity<?> logout(HttpServletResponse response) {
         Cookie cookie = new Cookie("access_cookie", null);
         cookie.setPath("/");
-        cookie.setDomain("localhost");
+        cookie.setDomain("https://twild-gallery.vercel.app");
         cookie.setMaxAge(0);
         response.addCookie(cookie);
         return ResponseEntity.ok().build();
