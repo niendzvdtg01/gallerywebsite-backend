@@ -35,6 +35,10 @@ public class AuthFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
+        if (path.contains("/user/create_user")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
 
         // Check cookie
         Cookie[] cookies = request.getCookies();
